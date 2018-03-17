@@ -7,8 +7,22 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
+  email: string = '';
+  phone: string = '';
+  message: string = '';
+
   constructor(public navCtrl: NavController) {
 
+  }
+
+  submit(){
+    this.navCtrl.popToRoot();
+  }
+
+  reset(){
+    this.email = '';
+    this.phone = '';
+    this.message = '';
   }
 
 }

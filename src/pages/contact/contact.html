@@ -1,17 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Contact Us
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-label floating>Email*:</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone*:</ion-label>
+      <ion-input type="text" [(ngModel)]="phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Message*:</ion-label>
+      <ion-textarea [(ngModel)]="message"></ion-textarea>
     </ion-item>
   </ion-list>
+  <button ion-button block on-tap="submit()">Submit</button>
+  <button ion-button block color="light" on-tap="reset()">Reset</button>
 </ion-content>
