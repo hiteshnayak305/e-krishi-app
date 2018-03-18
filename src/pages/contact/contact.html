@@ -9,15 +9,19 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label floating>Email*:</ion-label>
+      <ion-label floating>Name *:</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email :</ion-label>
       <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Phone*:</ion-label>
+      <ion-label floating>Phone *:</ion-label>
       <ion-input type="text" [(ngModel)]="phone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Message*:</ion-label>
+      <ion-label floating>Message *:</ion-label>
       <ion-textarea [(ngModel)]="message"></ion-textarea>
     </ion-item>
   </ion-list>

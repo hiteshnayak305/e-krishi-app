@@ -14,6 +14,7 @@
 
 
 <ion-content>
+  <ion-searchbar [(ngModel)]="searchString" [showCancelButton]="true" [debounce]="1000" (ionInput)="getItems($event)"></ion-searchbar>
   <ion-card *ngFor="let product of products">
     <img src="{{ product.imageURL }}"/>
     <ion-card-content>

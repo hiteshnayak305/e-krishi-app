@@ -1,12 +1,12 @@
 /**
  * A generic model that our Master-Detail products list, create, and delete.
  */
-export class Scheme {
+export class Contact {
 
-  imageUrl: string;
-  title: string;
-  description: string;
-  link: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
 
   constructor(fields: any) {
     // Quick and dirty extend/assign fields to this model
@@ -18,6 +18,6 @@ export class Scheme {
 
 }
 
-export interface Scheme {
+export interface Product {
   [prop: string]: any;
 }

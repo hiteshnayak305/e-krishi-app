@@ -1,5 +1,7 @@
+import { SchemeProvider } from './../../providers/providers';
+import { Network } from '@ionic-native/network';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 
 import { Scheme } from '../../models/scheme';
 @Component({
@@ -8,19 +10,20 @@ import { Scheme } from '../../models/scheme';
 })
 export class HomePage {
 
-  schemes: Scheme[] = [
-            new Scheme({'imageURL':'https://www.indiahub.com/assets/schema/MNREGA_Overview.jpg',
-                        'title':'Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)',
-                        'description':'The Act provides for a guaranteed minimum of 100 days of employment per household in rural India, along with proper work-related amenities, and special provisions for women and specially-abled workers.',
-                        'link':'https://www.indiahub.com/schemes-and-services/rural-schemes/Mahatma-Gandhi-National-Rural-Employment-Guarantee-Act--MGNREGA-'}),
-            new Scheme({'imageURL':'https://www.indiahub.com/assets/schema/Pradhan_Mantri_Jan_Dhan_Yojana_(PMJDY).jpg',
-                        'title':'Pradhan Mantri Jan Dhan Yojana (PMJDY)',
-                        'description':'Starting from interest on deposit to accidental coverage of 1 lakh rupees, to mobile banking, to zero-balance account and availing overdraft of Rs. 5000, there are loads of benefits with PMJDY plan. It is a government initiative to let people come under the roof of banking institution more.',
-                        'link':'https://www.indiahub.com/schemes-and-services/rural-schemes/Pradhan-Mantri-Jan-Dhan-Yojana--PMJDY-'})
-          ];
+  schemes: Scheme[] = [];
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, private network: Network, private toastCtrl: ToastController, private schemeProvider: SchemeProvider) {
+    schemeProvider.getSchemes().subscribe((data)=>{
+      //console.log(data);
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          this.schemes.push(data[key]);
+          //console.log(data[key].imageUrl);
+        }
+      }
+    }, (err)=>{
+      console.log(err)
+    });
   }
 
   openinbrowser(event: any, scheme: Scheme){
@@ -28,4 +31,21 @@ export class HomePage {
     window.open(scheme.link, '_blank');
   }
 
+  onConnectSubscription = this.network.onConnect().subscribe(()=>{
+    console.log("onConnect");
+    let toast = this.toastCtrl.create({
+      message: 'Connection available',
+      duration: 1000
+    });
+    toast.present();
+  });
+
+  onDisconnectSubscription = this.network.onDisconnect().subscribe(()=>{
+    console.log("onDisconnect");
+    let toast = this.toastCtrl.create({
+      message: 'Connection lost...',
+      duration: 1000
+    });
+    toast.present();
+  });
 }
