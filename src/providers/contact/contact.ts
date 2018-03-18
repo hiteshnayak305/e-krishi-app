@@ -20,6 +20,7 @@ export class ContactProvider {
   send(contact: Contact){
     var postdata = {
       'key': 'alohamora',
+      'subject': 'From e-krishi client',
       'name': contact.name,
       'email': contact.email,
       'phone': contact.phone,

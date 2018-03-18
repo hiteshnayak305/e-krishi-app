@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Network } from '@ionic-native/network';
 
-import { ProductsPage } from '../pages/products/products';
+import { ProductsPageModule } from '../pages/products/products.module';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -21,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
-    ProductsPage,
     ContactPage,
     HomePage,
     TabsPage
@@ -29,12 +28,12 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ProductsPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ProductsPage,
     ContactPage,
     HomePage,
     TabsPage

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/retry';
  */
 @Injectable()
 export class ApiProvider {
-  url: string = 'http://localhost:3000/api';
+  url: string = 'https://ekrishi.herokuapp.com/api';
 
   constructor(public http: HttpClient) {
   }
